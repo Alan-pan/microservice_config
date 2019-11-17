@@ -1,6 +1,9 @@
+spring:
+  profiles:
+    active: dev
+---   
 server:
   port: 7001
-
 eureka:
   instance:
     hostname: eureka7001.com
@@ -22,3 +25,5 @@ eureka:
 security:
   basic:
     enabled: false
+spring:
+  profiles: dev
