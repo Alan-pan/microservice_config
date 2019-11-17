@@ -19,3 +19,6 @@ eureka:
     service-url:
       #配置另外两个
       defaultZone: http://eureka7001.com:7001/eureka/
+security:
+  basic:
+    enabled: false
