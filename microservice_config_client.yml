@@ -27,4 +27,5 @@ spring:
     client:
     service-url:
     defaultZone: eureka7001.com:7001/eureka
+
   #请保存为UTF-8格式
