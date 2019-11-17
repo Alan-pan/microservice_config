@@ -1,80 +1,37 @@
 spring:
   profiles:
-    active: test
----
-server:
-  port: 8001
-
-mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml
-  type-aliases-package: com.atguigu.springcloud.entity
-  mapper-locations:
-    - classpath:mybatis/mapper/**/*.xml
-
-spring:
+    active: dev
   application:
-    name: microservice-dept
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/clouddb01
-    username: root
-    password: root
-    dbcp2:
-      min-idle: 5
-      initial-size: 5
-      max-total: 5
-      max-wait-millis: 200
+    name: microservice-config-eureka-7001
+---
+spring:
   profiles: dev
-
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/
-  instance:
-    instance-id: dept_8001
-    prefer-ip-address: true #显示ip地址
-info:
-  app.name: microservice_cloud
-  company.name: atguigu
-  build.artifactId: $project.artifactId$
-  vuild.version: $project.version$
----
 server:
-  port: 8001
-
-mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml
-  type-aliases-package: com.atguigu.springcloud.entity
-  mapper-locations:
-    - classpath:mybatis/mapper/**/*.xml
-
-spring:
-  application:
-    name: microservice-dept
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/clouddb02
-    username: root
-    password: root
-    dbcp2:
-      min-idle: 5
-      initial-size: 5
-      max-total: 5
-      max-wait-millis: 200
-  profiles: test
-
+  port: 7001
 eureka:
-  client:
-    service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/
   instance:
-    instance-id: dept_8001
-    prefer-ip-address: true #显示ip地址
-info:
-  app.name: microservice_cloud
-  company.name: atguigu
-  build.artifactId: $project.artifactId$
-  vuild.version: $project.version$
+    hostname: eureka7001.com
+  server:
+    enable-self-preservation: true #自我保护机制默认开启
+  client:
+    register-with-eureka: false #表示不向注册中心注册自己
+    fetch-registry: false #并不去检索服务
+    service-url:
+      #配置另外两个
+      defaultZone: http://localhost:7001/eureka/
+---
+spring:
+  profiles: test
+server:
+  port: 7001
+eureka:
+  instance:
+    hostname: eureka7001.com
+  server:
+    enable-self-preservation: true #自我保护机制默认开启
+  client:
+    register-with-eureka: false #表示不向注册中心注册自己
+    fetch-registry: false #并不去检索服务
+    service-url:
+      #配置另外两个
+      defaultZone: http://localhost:7001/eureka/
