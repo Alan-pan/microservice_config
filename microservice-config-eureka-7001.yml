@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: test
 ---
 server:
   port: 8001
@@ -64,8 +64,7 @@ spring:
       initial-size: 5
       max-total: 5
       max-wait-millis: 200
-  profiles: dev
-
+  profiles: test
 
 eureka:
   client:
